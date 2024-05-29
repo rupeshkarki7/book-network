@@ -1,12 +1,12 @@
 spring:
   datasource:
-    url: jdbc:postgresl://localhost:5421/book_social_network
-    username: xxmortis
+    url: jdbc:postgresql://localhost:5432/book_social_network
+    username: postgres
     password: secret
     driver-class-name: org.postgresql.Driver
   jpa:
     hibernate:
-      ddl-auto: update
+      ddl-auto: create-drop
     properties:
       hibernate:
         format_sql: true
@@ -34,3 +34,8 @@ spring:
       jwt:
         secret-key: B691BE28ABCC9311B17979119BF89
         expiration: 8640000
+    mailing:
+      frontend:
+        activation-url: http://localhost:4200/activate-account
+server:
+  port: 8088
