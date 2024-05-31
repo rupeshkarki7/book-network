@@ -1,5 +1,7 @@
 package com.rpsh.booknetwork.user;
 
+import com.rpsh.booknetwork.book.Book;
+import com.rpsh.booknetwork.history.BookTransactionHistory;
 import com.rpsh.booknetwork.role.Role;
 import jakarta.persistence.*;
 import lombok.*;
@@ -34,8 +36,9 @@ public class User implements UserDetails, Principal {
     private String lastname;
 
 
-    @ManyToMany(fetch = FetchType.EAGER)
-    private List<Role> roles;
+
+
+
     private LocalDate dateOfBirth;
 
     @Column(unique = true)
@@ -44,6 +47,15 @@ public class User implements UserDetails, Principal {
     private boolean accountLocked;
     private boolean enabled;
 
+    @ManyToMany(fetch = FetchType.EAGER)
+    private List<Role> roles;
+
+
+
+    @OneToMany(mappedBy = "owner")
+    private List<Book> books;
+
+
     @CreatedDate
     @Column(nullable = false, updatable = false)
     private LocalDateTime createdDate;
@@ -51,6 +63,8 @@ public class User implements UserDetails, Principal {
     @Column(insertable = false)
     private LocalDateTime lastModifiedDate;
 
+    @OneToMany(mappedBy = "user")
+    private List<BookTransactionHistory> histories;
 
     @Override
     public String getName() {
