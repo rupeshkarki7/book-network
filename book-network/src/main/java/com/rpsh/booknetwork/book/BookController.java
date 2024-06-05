@@ -1,6 +1,7 @@
 package com.rpsh.booknetwork.book;
 
 
+import com.rpsh.booknetwork.common.PageResponse;
 import io.swagger.v3.oas.annotations.tags.Tag;
 import jakarta.validation.Valid;
 import lombok.RequiredArgsConstructor;
@@ -20,8 +21,8 @@ public class BookController {
     public ResponseEntity<Integer> saveBook(
             @Valid @RequestBody BookRequest request,
             Authentication connectedUser
-    ){
-        return ResponseEntity.ok(service.save(request,connectedUser));
+    ) {
+        return ResponseEntity.ok(service.save(request, connectedUser));
     }
 
     @GetMapping("{book-id}")
@@ -29,9 +30,14 @@ public class BookController {
         return ResponseEntity.ok(service.findById(bookId));
     }
 
-/*
     @GetMapping
-    public ResponseEntity<BookRe>
-*/
+    public ResponseEntity<PageResponse<BookResponse>> findAllBooks(
+            @RequestParam(name = "page", defaultValue = "0", required = false) int page,
+            @RequestParam(name = "size", defaultValue = "10", required = false) int size,
+            Authentication connectedUser
+
+    ){
+        return  ResponseEntity.ok(service.findAllBooks(page,size,connectedUser));
+    }
 
 }
