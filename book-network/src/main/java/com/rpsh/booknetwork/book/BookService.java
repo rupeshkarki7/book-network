@@ -2,6 +2,7 @@ package com.rpsh.booknetwork.book;
 
 
 import com.rpsh.booknetwork.user.User;
+import jakarta.persistence.EntityNotFoundException;
 import lombok.RequiredArgsConstructor;
 import org.springframework.security.core.Authentication;
 import org.springframework.stereotype.Service;
@@ -23,6 +24,10 @@ public class BookService {
     }
 
     public BookResponse findById(Integer bookId) {
-        return null;
+        return bookRepository.findById(bookId)
+                .map(bookMapper::toBookResponse)
+                .orElseThrow(()  -> new EntityNotFoundException("Book not found"));
+
+
     }
 }

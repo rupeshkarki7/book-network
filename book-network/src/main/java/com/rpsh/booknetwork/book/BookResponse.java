@@ -11,6 +11,7 @@ import lombok.*;
 @Builder
 public class BookResponse {
 
+    private Integer id;
     private String title;
     private String authorName;
     private String isbn;

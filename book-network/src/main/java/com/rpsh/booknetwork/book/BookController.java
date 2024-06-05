@@ -29,4 +29,9 @@ public class BookController {
         return ResponseEntity.ok(service.findById(bookId));
     }
 
+/*
+    @GetMapping
+    public ResponseEntity<BookRe>
+*/
+
 }
