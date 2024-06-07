@@ -1,5 +1,6 @@
 package com.rpsh.booknetwork.book;
 
+import com.rpsh.booknetwork.history.BookTransactionHistory;
 import org.springframework.stereotype.Service;
 
 @Service
@@ -27,6 +28,18 @@ public class BookMapper {
                 .shareable(book.isShareable())
                 .owner(book.getOwner())
                 //.cover()
+                .build();
+    }
+
+    public BorrowedBooksResponse toBorrowedBookResponse(BookTransactionHistory history) {
+        return  BorrowedBooksResponse.builder()
+                .id(history.getBook().getId())
+                .title(history.getBook().getTitle())
+                .authorName(history.getBook().getAuthorName())
+                .isbn(history.getBook().getIsbn())
+                .rate(history.getBook().getRate())
+                .returned(history.isReturned())
+                .returnApproved(history.isReturnApproved())
                 .build();
     }
 }

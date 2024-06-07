@@ -40,4 +40,41 @@ public class BookController {
         return  ResponseEntity.ok(service.findAllBooks(page,size,connectedUser));
     }
 
+    @GetMapping("/owner")
+    public ResponseEntity<PageResponse<BookResponse>> findALlBooksByOwner(
+            @RequestParam(name = "page", defaultValue = "0", required = false) int page,
+            @RequestParam(name = "size", defaultValue = "10", required = false) int size,
+            Authentication connectedUser
+    ) {
+        return ResponseEntity.ok(service.findAllBooksByOwner(page, size, connectedUser));
+    }
+
+    @GetMapping("/borrowed")
+    public ResponseEntity<PageResponse<BorrowedBooksResponse>> findALlBorrowedBooks(
+            @RequestParam(name = "page", defaultValue = "0", required = false) int page,
+            @RequestParam(name = "size", defaultValue = "10", required = false) int size,
+            Authentication connectedUser
+    ) {
+        return ResponseEntity.ok(service.findAllBorrowedBooks(page, size, connectedUser));
+    }
+
+    @GetMapping("/returned")
+    public ResponseEntity<PageResponse<BorrowedBooksResponse>> findALlReturnedBooks(
+            @RequestParam(name = "page", defaultValue = "0", required = false) int page,
+            @RequestParam(name = "size", defaultValue = "10", required = false) int size,
+            Authentication connectedUser
+    ) {
+        return ResponseEntity.ok(service.findALlReturnedBooks(page, size, connectedUser));
+    }
+
+    @PatchMapping("/shareable/{book-id}")
+    public ResponseEntity<Integer> updateSharableStatus(
+            @PathVariable("book-id") Integer bookId,
+            Authentication connectedUser
+            ) {
+
+        return ResponseEntity.ok(service.updateShareableStatus(bookId,connectedUser));
+
+    }
+
 }
