@@ -36,8 +36,8 @@ public class BookController {
             @RequestParam(name = "size", defaultValue = "10", required = false) int size,
             Authentication connectedUser
 
-    ){
-        return  ResponseEntity.ok(service.findAllBooks(page,size,connectedUser));
+    ) {
+        return ResponseEntity.ok(service.findAllBooks(page, size, connectedUser));
     }
 
     @GetMapping("/owner")
@@ -71,10 +71,27 @@ public class BookController {
     public ResponseEntity<Integer> updateSharableStatus(
             @PathVariable("book-id") Integer bookId,
             Authentication connectedUser
-            ) {
+    ) {
 
-        return ResponseEntity.ok(service.updateShareableStatus(bookId,connectedUser));
+        return ResponseEntity.ok(service.updateShareableStatus(bookId, connectedUser));
 
     }
 
+    @PatchMapping("/archived/{book-id}")
+    public ResponseEntity<Integer> updateArchivedStatus(
+            @PathVariable("book-id") Integer bookId,
+            Authentication connectedUser
+    ) {
+
+        return ResponseEntity.ok(service.updateArchivedStatus(bookId, connectedUser));
+
+    }
+
+    @PostMapping("/borrow/{book-id}")
+    public ResponseEntity<Integer> borrowBook(
+            @PathVariable("book-id") Integer bookId,
+            Authentication connectedUser
+    ){
+        return ResponseEntity.ok(service.borrowBook(bookId,connectedUser));
+    }
 }
