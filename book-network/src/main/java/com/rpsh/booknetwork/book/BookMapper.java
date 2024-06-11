@@ -1,5 +1,6 @@
 package com.rpsh.booknetwork.book;
 
+import com.rpsh.booknetwork.file.BookFileUtils;
 import com.rpsh.booknetwork.history.BookTransactionHistory;
 import org.springframework.stereotype.Service;
 
@@ -27,7 +28,7 @@ public class BookMapper {
                 .archived(book.isArchived())
                 .shareable(book.isShareable())
                 .owner(book.getOwner())
-                //.cover()
+                .cover(BookFileUtils.readFileFromLocation(book.getBookCover()))
                 .build();
     }
 
