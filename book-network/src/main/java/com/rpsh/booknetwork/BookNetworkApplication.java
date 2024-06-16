@@ -5,7 +5,6 @@ import com.rpsh.booknetwork.role.RoleRepository;
 import org.springframework.boot.CommandLineRunner;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
-import org.springframework.context.annotation.Bean;
 import org.springframework.data.jpa.repository.config.EnableJpaAuditing;
 import org.springframework.scheduling.annotation.EnableAsync;
 
@@ -18,7 +17,7 @@ public class BookNetworkApplication {
 		SpringApplication.run(BookNetworkApplication.class, args);
 	}
 
-	@Bean
+	//@Bean
 	public CommandLineRunner runner(RoleRepository roleRepository){
 		return args -> {
 			if(roleRepository.findByName("USER").isEmpty()){
