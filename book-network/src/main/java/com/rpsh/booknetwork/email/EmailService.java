@@ -1,9 +1,11 @@
 package com.rpsh.booknetwork.email;
 
 
+import com.rpsh.booknetwork.config.MailConfig;
 import jakarta.mail.MessagingException;
 import jakarta.mail.internet.MimeMessage;
 import lombok.RequiredArgsConstructor;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.mail.javamail.JavaMailSender;
 import org.springframework.mail.javamail.MimeMessageHelper;
 import org.springframework.scheduling.annotation.Async;
@@ -20,16 +22,16 @@ import static org.springframework.mail.javamail.MimeMessageHelper.MULTIPART_MODE
 @Service
 @RequiredArgsConstructor
 public class EmailService {
+
     private final JavaMailSender mailSender;
     private final SpringTemplateEngine templateEngine;
 
-
-
-
     @Async
-    public void sendEmail(String to, String username
+    public void sendEmail(
+              String to
+            , String username
             , EmailTemplateName emailTemplate
-            , String conformationUrl
+            , String confirmationUrl
             , String activationCode
             , String subject
     ) throws MessagingException {
@@ -48,7 +50,7 @@ public class EmailService {
 
         Map<String, Object> properties = new HashMap<>();
         properties.put("username", username);
-        properties.put("conformationUrl", conformationUrl);
+        properties.put("confirmationUrl", confirmationUrl);
         properties.put("activation_code", activationCode);
 
         Context context = new Context();
@@ -63,6 +65,5 @@ public class EmailService {
 
         mailSender.send(mimeMessage);
     }
-
 
 }

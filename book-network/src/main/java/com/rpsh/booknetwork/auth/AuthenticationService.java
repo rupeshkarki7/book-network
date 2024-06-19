@@ -17,6 +17,7 @@ import org.springframework.security.authentication.UsernamePasswordAuthenticatio
 import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 import java.security.SecureRandom;
 import java.time.LocalDateTime;
@@ -59,7 +60,7 @@ public class AuthenticationService {
         var newToken = generateAndSaveActivationToken(user);
 
         emailService.sendEmail(
-                 user.getEmail(),
+                user.getEmail(),
                 user.getFullName(),
                 EmailTemplateName.ACTIVATE_ACCOUNT,
                 activationUrl,
@@ -70,7 +71,7 @@ public class AuthenticationService {
 
     }
 
-    private String  generateAndSaveActivationToken(User user) {
+    private String generateAndSaveActivationToken(User user) {
         String generatedToken = generateActivationCode();
 
         var token = Token.builder()
@@ -88,7 +89,7 @@ public class AuthenticationService {
         String characters = "0123456789";
         StringBuilder codeBuilder = new StringBuilder();
         SecureRandom secureRandom = new SecureRandom();
-        for(int i = 0; i< 6; i++){
+        for (int i = 0; i < 6; i++) {
             int randomIndex = secureRandom.nextInt(characters.length());
             codeBuilder.append(characters.charAt(randomIndex));
         }
@@ -103,20 +104,20 @@ public class AuthenticationService {
                         request.getPassword()
                 )
         );
-        var claims = new HashMap<String,Object>();
+        var claims = new HashMap<String, Object>();
         var user = ((User) auth.getPrincipal());
         claims.put("fullName", user.getFullName());
-        var jwtToken = jwtService.generateToken(claims,user);
+        var jwtToken = jwtService.generateToken(claims, user);
 
         return AuthenticationResponse.builder().token(jwtToken).build();
     }
 
-   // @Transactional
+    @Transactional
     public void activateAccount(String token) throws MessagingException {
 
         Token savedToken = tokenRepository.findByToken(token)
                 .orElseThrow(() -> new RuntimeException("Invalid Token"));
-        if(LocalDateTime.now().isAfter(savedToken.getExpiresAt())){
+        if (LocalDateTime.now().isAfter(savedToken.getExpiresAt())) {
             sendValidationEmail(savedToken.getUser());
             throw new RuntimeException("Activation token has expired. A new token is sent to same email.");
         }

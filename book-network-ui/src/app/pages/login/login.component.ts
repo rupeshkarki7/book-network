@@ -4,7 +4,6 @@ import {NgForOf, NgIf} from "@angular/common";
 import {FormsModule} from "@angular/forms";
 import {Router} from "@angular/router";
 import {AuthenticationService} from "../../services/services/authentication.service";
-import {catchError, of} from "rxjs";
 import {TokenService} from "../../services/token/token.service";
 
 @Component({
@@ -35,26 +34,23 @@ export class LoginComponent {
     this.authService.authenticate({
         body: this.authRequest
       }
-    ).pipe(
-      catchError(err => {
+    ).subscribe({
+      next: (res) => {
+        this.tokenService.token = res.token as string;
+        this.router.navigate(['books']);
+      },
+      error: (err) => {
         console.log(err);
         if (err.error.validationErrors) {
-          this.errorMsg = err.error.validationErrors
+          this.errorMsg = err.error.validationErrors;
         } else {
-          this.errorMsg.push(err.error.error);
+          this.errorMsg.push(err.error.errorMsg);
         }
-        return of(null);
-      })
-    ).subscribe({
-      next: (res)=> {
-        this.tokenService.token = res?.token as string;
-        this.router.navigate(['books']);
       }
-    })
+    });
   }
 
-    register()
-    {
-      this.router.navigate(['Register'])
-    }
+  register() {
+    this.router.navigate(['register']);
   }
+}
