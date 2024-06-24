@@ -6,7 +6,6 @@ import io.swagger.v3.oas.annotations.enums.SecuritySchemeType;
 import io.swagger.v3.oas.annotations.info.Contact;
 import io.swagger.v3.oas.annotations.info.Info;
 import io.swagger.v3.oas.annotations.info.License;
-import io.swagger.v3.oas.annotations.media.Content;
 import io.swagger.v3.oas.annotations.security.SecurityRequirement;
 import io.swagger.v3.oas.annotations.security.SecurityScheme;
 import io.swagger.v3.oas.annotations.servers.Server;
@@ -21,7 +20,7 @@ import io.swagger.v3.oas.annotations.servers.Server;
                 title = "OpenApi Specification - XXMORTIS",
                 version = "1.0",
                 license = @License(
-                        name = "Lisc Name",
+                        name = "Licence Name",
                         url = "https://www.rpsh.com"
                 ),
                 termsOfService = "Terms of Service"
