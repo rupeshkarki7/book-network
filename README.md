@@ -1,12 +1,3 @@
-README
-
-1. **Create the `README.md` File:**
-   - Go to your GitHub repository.
-   - Click on "Add file" and select "Create new file."
-   - Name the file `README.md`.
-   - Paste the following content into the file.
-   - Commit the new file to the repository.
-
 ```markdown
 # Book Network
 
