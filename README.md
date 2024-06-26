@@ -109,13 +109,3 @@ If you have any questions or need further assistance, please reach out to us at
 
 Thank you for using Book Network!
 ```
-
-### Steps to Add the `README.md` File to GitHub
-
-1. Go to your GitHub repository.
-2. Click on "Add file" and select "Create new file."
-3. Name the file `README.md`.
-4. Paste the content provided above into the file.
-5. Commit the new file to the repository.
-
-This `README.md` file provides a comprehensive overview of your project, helping users and contributors understand the purpose of the project, how to set it up, and where to find more information.
