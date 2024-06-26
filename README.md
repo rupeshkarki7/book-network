@@ -1,4 +1,4 @@
-Here's a sample `README.md` file for your GitHub repository "book-network." This file provides an overview of the project, how to get started, and relevant information about the technologies used.
+README
 
 1. **Create the `README.md` File:**
    - Go to your GitHub repository.
