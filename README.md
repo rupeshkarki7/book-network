@@ -1,7 +1,8 @@
 ```markdown
 # Book Network
 
-Book Network is a full-stack web application that allows users to manage and share their book collections. The application is built using Spring, JWT, JSP, Docker, Angular, and other modern technologies.
+Book Network is a full-stack web application that allows users to manage and share their book collections.
+ The application is built using Spring, JWT, JSP, Docker, Angular, and other modern technologies.
 
 ## Features
 
@@ -92,7 +93,8 @@ Book Network is a full-stack web application that allows users to manage and sha
 
 ## Contributing
 
-We welcome contributions! Please read our [Security Policy](SECURITY.md) and make sure to follow our guidelines when submitting issues or pull requests.
+We welcome contributions! Please read our [Security Policy](SECURITY.md) and make sure to follow 
+our guidelines when submitting issues or pull requests.
 
 ## License
 
@@ -100,7 +102,8 @@ This project is licensed under the MIT License - see the [LICENSE](LICENSE) file
 
 ## Contact
 
-If you have any questions or need further assistance, please reach out to us at [security@book-network.com](mailto:security@book-network.com).
+If you have any questions or need further assistance, please reach out to us at
+[security@book-network.com](mailto:security@book-network.com).
 
 ---
 
