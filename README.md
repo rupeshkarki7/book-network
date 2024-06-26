@@ -108,4 +108,3 @@ If you have any questions or need further assistance, please reach out to us at
 ---
 
 Thank you for using Book Network!
-```
