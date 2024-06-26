@@ -42,7 +42,7 @@ Book Network is a full-stack web application that allows users to manage and sha
    - Navigate to the backend directory:
 
      ```sh
-     cd backend
+     cd book-network
      ```
 
    - Build the Spring Boot application:
@@ -62,7 +62,7 @@ Book Network is a full-stack web application that allows users to manage and sha
    - Navigate to the frontend directory:
 
      ```sh
-     cd frontend
+     cd book-network-ui
      ```
 
    - Install dependencies:
@@ -89,7 +89,7 @@ Book Network is a full-stack web application that allows users to manage and sha
 ## Usage
 
 - Access the application at `http://localhost:4200` for the frontend.
-- Access the backend API at `http://localhost:8080`.
+- Access the backend API at `http://localhost:8088`.
 
 ## Contributing
 
